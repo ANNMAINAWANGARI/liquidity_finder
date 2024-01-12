@@ -3,6 +3,7 @@ import {ethers,Contract} from 'ethers';
 import axios from 'axios';
 import UniswapV3Pool from '@uniswap/v3-core/artifacts/contracts/UniswapV3Pool.sol/UniswapV3Pool.json';
 import toast from 'react-hot-toast';
+import {parseErrorMsg, shortenAddress} from '../utils/shortaddress'
 
 //INTERNAL IMPORT
 
@@ -53,8 +54,9 @@ export const CONTEXT_PROVIDER = ({children})=>{
             notifySuccess('Successfully Completed')
             return POOL_ADDRESS
         }catch(error){
+            const errorMessage = parseErrorMsg(error)
             setLoader(false);
-            notifyError('error')
+            notifyError('Error:',errorMessage)
         }
     }
 
@@ -84,8 +86,8 @@ export const CONTEXT_PROVIDER = ({children})=>{
 
             const  poolData = await GET_POOL_DATA(poolContract,selectedNetwork,poolAddress)
             let liquidityArray = [];
-            const POOL_LIST = localStorage.getItem('liquidityHistory') ;
-            if(POOL_LIST){
+            const LIQUIDITY_LIST = localStorage.getItem('liquidityHistory') ;
+            if(LIQUIDITY_LIST){
                 liquidityArray = JSON.parse(localStorage.getItem('liquidityHistory'));
                 liquidityArray.push(poolData);
                 localStorage.setItem('liquidityHistory',JSON.stringify(poolArray))
@@ -97,9 +99,10 @@ export const CONTEXT_PROVIDER = ({children})=>{
             setLoader(false);
             notifySuccess('Successfully Completed')
             return poolData
-        }catch(err){
+        }catch(error){
+            const errorMessage = parseErrorMsg(error)
             setLoader(false);
-            notifySuccess('Error')
+            notifyError('Error:',errorMessage)
         }
     }
 
