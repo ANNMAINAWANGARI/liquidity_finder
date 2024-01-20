@@ -10,7 +10,7 @@ const Action = () => {
             <div className="flex -space-x-2">
               {
                 [1,2,3].map((img,index)=>(
-                  <img src={`assets/images/avatars/img-${index+1}.png`} alt="Image Action" className="inline-block h-10 w-10 rounded-full ring-2 ring-default-950 bg-white"/>
+                  <img src={`assets/images/avatars/img-${index+1}.png`} alt="Image Action" className="inline-block h-10 w-10 rounded-full ring-2 ring-default-950 bg-white" key={index+1}/>
                 ))
               }
               <button className="h-10 w-10 font-medium text-primary rounded-full bg-white">80+</button>

@@ -24,7 +24,7 @@ export const CONTEXT_PROVIDER = ({children})=>{
     const GET_POOL_ADDRESS = async(liquidity,selectedNetwork)=>{
         try{
             setLoader(true);
-            const PROVIDER = new ethers.providers.JsonRpcProvider('https://rpc.ankr.com/polygon_mumbai');
+            const PROVIDER = new ethers.providers.JsonRpcProvider(selectedNetwork.rpc);
             const FACTORY_CONTRACT = new ethers.Contract(FACTORY_ADDRESS,FACTORY_ABI,PROVIDER);
             
             const POOL_ADDRESS = await FACTORY_CONTRACT.functions.getPool(
