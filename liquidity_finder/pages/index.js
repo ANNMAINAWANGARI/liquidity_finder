@@ -25,7 +25,7 @@ const index = () => {
   },[activeNetwork])
   return (
     <div className='bg-slate-900'>
-      <Header setActiveComponent={setActiveComponent} activeNetwork={activeNetwork}/>
+      <Header setActiveComponent={setActiveComponent} activeNetwork={activeNetwork} />
       {
         activeComponent ==='Home'?(
          <Home 
@@ -38,7 +38,7 @@ const index = () => {
         ):activeComponent ==='Liquidity History'?(
           <LiqudityHistory setActiveComponent={setActiveComponent}/>
         ):activeComponent ==='Networks'?(
-          <Networks setActiveComponent={setActiveComponent} activeNetwork={activeNetwork}/>
+          <Networks setActiveComponent={setActiveComponent} activeNetwork={activeNetwork} setActiveNetwork={setActiveNetwork}/>
         ):(<></>)
       }
       <Action/>
