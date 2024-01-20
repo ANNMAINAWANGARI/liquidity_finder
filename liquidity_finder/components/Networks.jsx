@@ -32,7 +32,7 @@ const Networks = ({setActiveComponent,activeNetwork, setActiveNetwork}) => {
   ]
 
   const selectNetwork = (network)=>{
-    setActiveComponent(network.name);
+    setActiveComponent('Networks');
     setActiveNetwork(network.name)
     localStorage.setItem('activeNetwork',JSON.stringify(network))
   }

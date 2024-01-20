@@ -20,6 +20,8 @@ export const CONTEXT_PROVIDER = ({children})=>{
     const notifySuccess = (msg)=> toast.success(msg, {duration:4000})
 
 
+    let poolArray = [];
+
     //GET POOL ADDRESS
     const GET_POOL_ADDRESS = async(liquidity,selectedNetwork)=>{
         try{
@@ -40,7 +42,7 @@ export const CONTEXT_PROVIDER = ({children})=>{
                 poolAddress:POOL_ADDRESS
             }
             
-            let poolArray = [];
+            
             const POOL_LIST = localStorage.getItem('poolHistory') ;
             if(POOL_LIST){
                 poolArray = JSON.parse(localStorage.getItem('poolHistory'));
@@ -81,7 +83,7 @@ export const CONTEXT_PROVIDER = ({children})=>{
     const GET_POOL_DETAILS = async(poolAddress, selectedNetwork)=>{
         try{
             setLoader(true);
-            const PROVIDER = new ethers.providers.JsonRpcProvider('https://rpc.ankr.com/polygon_mumbai');
+            const PROVIDER = new ethers.providers.JsonRpcProvider(selectedNetwork.rpc);
             const poolContract = new Contract(poolAddress,UniswapV3Pool.abi,PROVIDER);
 
             const  poolData = await GET_POOL_DATA(poolContract,selectedNetwork,poolAddress)
@@ -90,10 +92,10 @@ export const CONTEXT_PROVIDER = ({children})=>{
             if(LIQUIDITY_LIST){
                 liquidityArray = JSON.parse(localStorage.getItem('liquidityHistory'));
                 liquidityArray.push(poolData);
-                localStorage.setItem('liquidityHistory',JSON.stringify(poolArray))
+                localStorage.setItem('liquidityHistory',JSON.stringify(liquidityArray))
             }else{
                 liquidityArray.push(poolData);
-                localStorage.setItem('liquidityHistory',JSON.stringify(poolArray))
+                localStorage.setItem('liquidityHistory',JSON.stringify(liquidityArray))
             }
 
             setLoader(false);

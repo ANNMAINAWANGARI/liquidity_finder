@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react";
 import {GoCopy} from 'react-icons/go';
 import {shortenAddress} from '../utils/shortaddress';
-import {} from '../components/index'
+import { Promo } from '../components/index'
 
 const PoolHistory = ({setActiveComponent}) => {
   const [poolDetails,setPoolDetails] = useState([]);
@@ -47,7 +47,7 @@ const PoolHistory = ({setActiveComponent}) => {
                 </div>
               </div>
             </div>))}
-          </div>):("")
+          </div>):(<Promo setActiveComponent={setActiveComponent}/>)
         }
       </div>
     </section>

@@ -22,8 +22,8 @@ const Home = ({setActiveComponent, GET_POOL_DETAILS}) => {
       return notifyError("Invalid Address Or Provide Data")
     }
 
-    const poolDetails = await GET_POOL_DETAILS(inputAddress,selectedNetwork);
-    setPoolDetails(poolDetails);
+    const pool_Details = await GET_POOL_DETAILS(inputAddress,selectedNetwork);
+    setPoolDetails(pool_Details);
   }
   return (<section className="relative overflow-hidden pt-[72px] bg-default-950/40 backdrop-blur-3xl">
     <div className="absolute h-14 w-14 bg-primary/10 top-2/3 start-80 -z-1 rounded-2xl rounded-tl-none rounded-br-none animate-[spin_10s_linear_infinite]"></div>
